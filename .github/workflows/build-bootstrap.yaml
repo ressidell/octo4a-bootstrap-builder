@@ -25,3 +25,8 @@ jobs:
           tar -xvzf OctoPrint-1.10.0.tar.gz
           mv OctoPrint-1.10.0 octoprint-release
           sh scripts/build-octo4a-bootstrap.sh
+      - name: Upload artifact 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bootstrap
+          path: bootstrap.tar.gz

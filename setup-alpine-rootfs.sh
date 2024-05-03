@@ -34,4 +34,4 @@ export HOME='/home/octoprint'
 
 # switch to octoprint user
 su -s /bin/sh -c "python3 -m venv ~/octoprint-venv" octoprint
-su -s /bin/sh -c ". ~/octoprint-venv/bin/activate && pip3 install /mnt/OctoPrint-1.10.0" octoprint
+su -s /bin/sh -c ". ~/octoprint-venv/bin/activate && pip3 install /mnt/octoprint-release" octoprint

@@ -33,5 +33,5 @@ adduser -D -g "octoprint" octoprint
 export HOME='/home/octoprint'
 
 # switch to octoprint user
-su -s /bin/sh -c "python3 -m venv ~/octoprint-venv" octoprint
-su -s /bin/sh -c ". ~/octoprint-venv/bin/activate && pip3 install /mnt/octoprint-release" octoprint
+su -s /bin/bash -c "python3 -m venv ~/octoprint-venv" octoprint
+su -s /bin/bash -c ". ~/octoprint-venv/bin/activate && cd /mnt/octoprint-release && pip3 install ." octoprint

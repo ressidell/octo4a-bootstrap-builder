@@ -22,7 +22,7 @@ jobs:
       #     token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build bootstrap
         run: |
-          curl -L https://github.com/OctoPrint/OctoPrint/releases/download/1.10.0/OctoPrint-1.10.0.tar.gz
+          curl -o OctoPrint-1.10.0.tar.gz -L https://github.com/OctoPrint/OctoPrint/releases/download/1.10.0/OctoPrint-1.10.0.tar.gz
           tar -xvzf OctoPrint-1.10.0.tar.gz
           mv OctoPrint-1.10.0 octoprint-release
           chmod -R 755 octoprint-release/

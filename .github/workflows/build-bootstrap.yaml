@@ -24,4 +24,5 @@ jobs:
         run: |
           tar -xvzf OctoPrint-1.10.0.tar.gz
           mv OctoPrint-1.10.0 octoprint-release
+          chmod -R 755 octoprint-release/
           sh scripts/build-octo4a-bootstrap.sh

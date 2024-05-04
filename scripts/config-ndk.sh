@@ -1,4 +1,4 @@
-#!/env/sh
+#!/usr/local/env sh
 
 # Supported platforms
 # Note - currently disabling pre Android 21 targets
@@ -18,14 +18,26 @@ config_ndk() {
     fi
 
     case "$1" in
-    "aarch64") export TARGET=aarch64-linux-android ;;
-    "armv7a") export TARGET=armv7a-linux-androideabi ;;
-    "i686") export TARGET=i686-linux-android ;;
-    "x86_64") export TARGET=x86_64-linux-android ;;
+    "aarch64")
+        export TARGET=aarch64-linux-android
+        export ARCH_NDK="arm64-v8a"
+        ;;
+    "armv7a")
+        export TARGET=armv7a-linux-androideabi
+        export ARCH_NDK="armeabi-v7a"
+        ;;
+    "i686")
+        export TARGET=i686-linux-android
+        export ARCH_NDK="x86"
+        ;;
+    "x86_64")
+        export TARGET=x86_64-linux-android
+        export ARCH_NDK="x86_64"
+        ;;
     esac
 
-	export INSTALL_ROOT="$BUILD_DIR/root-$1/root"
-	export STATIC_ROOT="$BUILD_DIR/static-$1/root"
+    export INSTALL_ROOT="$BUILD_DIR/root-$1/root"
+    export STATIC_ROOT="$BUILD_DIR/static-$1/root"
 
     # Set this to your minSdkVersion.
     export API=21

@@ -1,4 +1,4 @@
-#!/env/sh
+#!/usr/local/env sh
 # statically builds proot
 
 BUILD_DIR="$(pwd)/build"

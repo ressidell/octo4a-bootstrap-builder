@@ -1,4 +1,4 @@
-#!/env/sh
+#!/usr/local/env sh
 # statically builds talloc 2.4.1
 
 BUILD_DIR="$(pwd)/build"

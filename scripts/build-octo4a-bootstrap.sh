@@ -1,4 +1,4 @@
-#!/env/sh
+#!/usr/local/env sh
 # Builds a small alpine rootfs, and installs octoprint into it.
 
 set -eu
@@ -12,4 +12,4 @@ sudo sh scripts/alpine-make-rootfs.sh \
     --branch $ALPINE_BRANCH \
     --packages "$O4A_PKGS" \
     --script-chroot \
-    rootfs.tar.xz ./scripts/setup-alpine-rootfs.sh
+    build/rootfs.tar.xz ./scripts/setup-alpine-rootfs.sh

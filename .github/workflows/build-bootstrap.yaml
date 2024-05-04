@@ -12,21 +12,19 @@ jobs:
       -
         name: Set up QEMU user mode
         uses: docker/setup-qemu-action@v3
-      -
-        name: Fetch OctoPrint release
-        uses: dsaltares/fetch-gh-release-asset@master
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
         with:
-          repo: 'OctoPrint/OctoPrint'
-          version: 'tags/1.10.0'
-          file: 'OctoPrint-1.10.0.tar.gz'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ndk-version: r26d
+          add-to-path: true
       - name: Build bootstrap
         run: |
-          tar -xvzf OctoPrint-1.10.0.tar.gz
-          mv OctoPrint-1.10.0 octoprint-release
-          sh scripts/build-octo4a-bootstrap.sh
+          sh scripts/create-bootstrap.sh 1.10.0 x86_64
+        env:
+          NDK_PATH: ${{ steps.setup-ndk.outputs.ndk-path }}
       - name: Upload artifact 
         uses: actions/upload-artifact@v4
         with:
           name: rootfs
-          path: rootfs.tar.xz
+          path: build/bootstrap-1.10.0-x86_64.zip

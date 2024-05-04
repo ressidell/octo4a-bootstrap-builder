@@ -11,7 +11,7 @@ cd external/talloc
 config_ndk aarch64
 
 cat <<EOF >cross-answers.txt
-Checking uname sysname type: "Darwin"
+Checking uname sysname type: "Linux"
 Checking uname machine type: "dontcare"
 Checking uname release type: "dontcare"
 Checking uname version type: "dontcare"

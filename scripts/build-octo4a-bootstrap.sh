@@ -8,8 +8,8 @@ readonly O4A_PKGS='alpine-keys apk-tools gcc python3 py3-pip libffi-dev python3-
 readonly ALPINE_BRANCH='3.19'
 
 sudo sh scripts/alpine-make-rootfs.sh \
-    --arch x86_64 \
+    --arch aarch64 \
     --branch $ALPINE_BRANCH \
     --packages "$O4A_PKGS" \
     --script-chroot \
-    bootstrap.tar.gz ./scripts/setup-alpine-rootfs.sh
+    rootfs.tar.xz ./scripts/setup-alpine-rootfs.sh

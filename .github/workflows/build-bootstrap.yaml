@@ -28,5 +28,5 @@ jobs:
       - name: Upload artifact 
         uses: actions/upload-artifact@v4
         with:
-          name: bootstrap
-          path: bootstrap.tar.gz
+          name: rootfs
+          path: rootfs.tar.xz

@@ -8,9 +8,13 @@ mkdir $BUILD_DIR
 
 cd external/talloc
 
-config_ndk aarch64
+# Build binaries for each supported platform
+for ARCH in $ARCHS; do
+    config_ndk $ARCH
 
-cat <<EOF >cross-answers.txt
+    echo "Building static talloc for $ARCH"
+
+    cat <<EOF >cross-answers.txt
 Checking uname sysname type: "Linux"
 Checking uname machine type: "dontcare"
 Checking uname release type: "dontcare"
@@ -38,11 +42,23 @@ Checking for HAVE_INCOHERENT_MMAP: OK
 Checking getconf large file support flags work: OK
 EOF
 
-./configure --prefix=$INSTALL_ROOT \
-    --disable-rpath \
-    --disable-python \
-    --cross-compile \
-    --cross-answers=cross-answers.txt
+    # clean previous build
+    make distclean || true
 
-echo "$CC"
-./configure "--prefix=$BUILD_ROOT" --disable-rpath --disable-python --cross-compile --cross-answers=cross-answers.txt
+    ./configure --prefix=$INSTALL_ROOT \
+        --disable-rpath \
+        --disable-python \
+        --cross-compile \
+        --cross-answers=cross-answers.txt
+
+    echo "$CC"
+    ./configure "--prefix=$BUILD_ROOT" --disable-rpath --disable-python --cross-compile --cross-answers=cross-answers.txt
+
+    make
+
+    mkdir -p "$STATIC_ROOT/include"
+    mkdir -p "$STATIC_ROOT/lib"
+
+    ar rcs "$STATIC_ROOT/lib/libtalloc.a" bin/default/talloc*.o
+    cp -f talloc.h "$STATIC_ROOT/include"
+done

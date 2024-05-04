@@ -1,5 +1,9 @@
 #!/env/sh
 
+# Supported platforms
+# Note - currently disabling pre Android 21 targets
+ARCHS='aarch64 armv7a x86_64 i686'
+
 # Configures NDK for android cross-compilation
 if [[ -z "${NDK_PATH}" ]]; then
     echo "NDK Path not set" >&2

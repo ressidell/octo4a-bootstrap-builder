@@ -6,7 +6,7 @@ if [ -z "$1" ] || [ -z "$2" ]; then
 	exit 1
 fi
 
-set -eu
+set -e
 
 # Configures NDK for android cross-compilation
 if [[ -z "${NDK_PATH}" ]]; then

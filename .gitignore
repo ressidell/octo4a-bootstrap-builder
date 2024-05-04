@@ -1,3 +1,4 @@
 bootstrap/
 *.tar.gz
 octoprint-release/
+build/

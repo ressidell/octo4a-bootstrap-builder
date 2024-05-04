@@ -1,8 +1,7 @@
 #!/env/sh
 # statically builds proot
 
-readonly BUILD_DIR="$(pwd)/build"
-mkdir $BUILD_DIR
+BUILD_DIR="$(pwd)/build"
 
 . ./scripts/config-ndk.sh
 
@@ -37,3 +36,5 @@ cp $PROOT_UNBUNDLE_LOADER/* $INSTALL_ROOT/bin/$PROOT_UNBUNDLE_LOADER/
         "$STRIP" "$FN"
     done
 )
+
+cd $BUILD_DIR/..

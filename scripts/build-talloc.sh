@@ -1,8 +1,7 @@
 #!/env/sh
 # statically builds talloc 2.4.1
 
-readonly BUILD_DIR="$(pwd)/build"
-mkdir $BUILD_DIR
+BUILD_DIR="$(pwd)/build"
 
 . ./scripts/config-ndk.sh
 
@@ -50,8 +49,6 @@ make distclean || true
     --cross-compile \
     --cross-answers=cross-answers.txt
 
-./configure "--prefix=$BUILD_ROOT" --disable-rpath --disable-python --cross-compile --cross-answers=cross-answers.txt
-
 make
 
 mkdir -p "$STATIC_ROOT/include"
@@ -59,3 +56,5 @@ mkdir -p "$STATIC_ROOT/lib"
 
 ar rcs "$STATIC_ROOT/lib/libtalloc.a" bin/default/talloc*.o
 cp -f talloc.h "$STATIC_ROOT/include"
+
+cd $BUILD_DIR/..

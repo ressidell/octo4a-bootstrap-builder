@@ -1,11 +1,12 @@
-#!/env/sh
+#!/usr/bin/env sh
 # Generates a full octo4a bootstrap + startup scripts for a given architecture
-set -eu
 
 if [ -z "$1" ] || [ -z "$2" ]; then
 	echo "Usage: <arch> <octoprint version>"
 	exit 1
 fi
+
+set -eu
 
 # Configures NDK for android cross-compilation
 if [[ -z "${NDK_PATH}" ]]; then

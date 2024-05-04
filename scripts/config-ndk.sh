@@ -19,7 +19,9 @@ config_ndk() {
     "i686") export TARGET=i686-linux-android ;;
     "x86_64") export TARGET=x86_64-linux-android ;;
     esac
-    echo $TARGET
+
+	export INSTALL_ROOT="$BUILD_DIR/root-$1/root"
+	export STATIC_ROOT="$BUILD_DIR/static-$1/root"
 
     # Set this to your minSdkVersion.
     export API=21

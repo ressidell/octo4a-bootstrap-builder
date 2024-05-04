@@ -46,6 +46,7 @@ make distclean || true
 ./configure --prefix=$INSTALL_ROOT \
     --disable-rpath \
     --disable-python \
+    --check-c-compiler=clang \
     --cross-compile \
     --cross-answers=cross-answers.txt
 

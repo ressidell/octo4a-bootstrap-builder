@@ -1,0 +1,14 @@
+# project talloc (2.4.0) configured on Sat May  4 12:56:22 2024 by
+# waf 2.0.25 (abi 20, python 30c03f0 on darwin)
+# using ./buildtools/bin/waf configure --prefix=/Users/corn/clones/octo4a-bootstrap-builder/build-talloc --disable-rpath --disable-python --cross-compile --cross-answers=cross-answers-ndk21.txt
+#
+----------------------------------------
+Setting top to
+/Users/corn/clones/octo4a-bootstrap-builder/external/talloc
+----------------------------------------
+Setting out to
+/Users/corn/clones/octo4a-bootstrap-builder/external/talloc/bin
+----------------------------------------
+Checking for 'clang' (C compiler)
+find program=['clang'] paths=['/nix/var/nix/profiles/default/bin', '/opt/homebrew/bin', '/usr/local/bin', '/System/Cryptexes/App/usr/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin', '/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin'] var='CC' -> ['~/Library/Android/sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android21-clang']
+from /Users/corn/clones/octo4a-bootstrap-builder/external/talloc/buildtools/wafsamba: Program ['~/Library/Android/sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android21-clang'] is not executable

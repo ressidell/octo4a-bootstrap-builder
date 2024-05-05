@@ -24,7 +24,7 @@ jobs:
           add-to-path: true
       - name: Build bootstrap
         run: |
-          bash scripts/create-bootstrap.sh 1.10.0 x86_64
+          bash scripts/create-bootstrap.sh x86_64 1.10.0 
         env:
           NDK_PATH: ${{ steps.setup-ndk.outputs.ndk-path }}
       - name: Upload artifact 

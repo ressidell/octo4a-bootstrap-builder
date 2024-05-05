@@ -462,7 +462,7 @@ if [ "$SCRIPT" ]; then
 			script_file2="/$script_name"
 		else
 			bind_dir="."
-			script_file2="./$script_name"
+			script_file2="./scripts/$script_name"
 		fi
 		echo "Mounting $bind_dir to /mnt inside chroot" >&2
 		mount_bind "$bind_dir" "$rootfs"/mnt

@@ -4,8 +4,12 @@ on:
   push:
 
 jobs:
-  qemu:
+  build-bootstrap:
+    name: Generate octo4a bootstraps
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [aarch64, x86_64]
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
@@ -22,11 +26,11 @@ jobs:
           add-to-path: true
       - name: Build bootstrap
         run: |
-          bash scripts/create-bootstrap.sh x86_64 1.10.0 
+          bash scripts/create-bootstrap.sh ${{ matrix.arch }} 1.10.0 
         env:
           NDK_PATH: ${{ steps.setup-ndk.outputs.ndk-path }}
       - name: Upload artifact 
         uses: actions/upload-artifact@v4
         with:
           name: rootfs
-          path: build/bootstrap-1.10.0-x86_64.zip
+          path: build/bootstrap-1.10.0-${{ matrix.arch }}.zip

@@ -64,6 +64,6 @@ cp scripts/run-bootstrap-android.sh build/bootstrap-dir/entrypoint.sh
 cp src/fake_proc_stat build/bootstrap-dir/
 
 # Compress the complete bootstrap
-zip -r build/bootstrap-$OCTOPRINT_VERSION-$ARCH.zip build/bootstrap-dir/*
+cd build/bootstrap-dir && zip -r ../bootstrap-$OCTOPRINT_VERSION-$ARCH.zip *
 
 echo "Bootstrap successfully built - compressed as build/bootstrap-$OCTOPRINT_VERSION-$ARCH.zip"

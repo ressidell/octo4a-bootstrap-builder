@@ -18,6 +18,7 @@ fi
 export PATH="$PATH:$NDK_PATH"
 export ARCH=$1
 export OCTOPRINT_VERSION=$2
+export BUILD_DIR="$PWD/build"
 
 rm -rf build/
 mkdir build/

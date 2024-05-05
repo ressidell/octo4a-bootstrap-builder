@@ -12,10 +12,6 @@ jobs:
       -
         name: Set up QEMU user mode
         uses: docker/setup-qemu-action@v3
-      - name: Setup Python3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12' 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
         id: setup-ndk

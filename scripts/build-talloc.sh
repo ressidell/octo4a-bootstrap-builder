@@ -43,20 +43,18 @@ EOF
 # clean previous build
 make distclean || true
 
-echo $INSTALL_ROOT
-
-./configure install --prefix=$INSTALL_ROOT \
+./configure --prefix=$INSTALL_ROOT \
     --disable-rpath \
     --disable-python \
     --cross-compile \
     --cross-answers=cross-answers.txt
 
-# make
+make
 
-# mkdir -p "$STATIC_ROOT/include"
-# mkdir -p "$STATIC_ROOT/lib"
+mkdir -p "$STATIC_ROOT/include"
+mkdir -p "$STATIC_ROOT/lib"
 
-# ar rcs "$STATIC_ROOT/lib/libtalloc.a" bin/default/talloc*.o
-# cp -f talloc.h "$STATIC_ROOT/include"
+ar rcs "$STATIC_ROOT/lib/libtalloc.a" bin/default/talloc*.o
+cp -f talloc.h "$STATIC_ROOT/include"
 
-# cd $BUILD_DIR/..
+cd $BUILD_DIR/..

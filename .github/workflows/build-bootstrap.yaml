@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-bootstrap:
-    name: Generate octo4a bootstraps
+    name: Build architecture specific bootstrap
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,5 +32,5 @@ jobs:
       - name: Upload artifact 
         uses: actions/upload-artifact@v4
         with:
-          name: rootfs
+          name: bootstrap-${{ matrix.arch }}
           path: build/bootstrap-1.10.0-${{ matrix.arch }}.zip

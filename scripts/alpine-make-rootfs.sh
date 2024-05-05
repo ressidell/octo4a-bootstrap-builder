@@ -124,6 +124,8 @@ readonly VIRTUAL_PKG=".make-$PROGNAME"
 : ${APK_TOOLS_URI_BIN:="apk.static"}
 : ${APK_TOOLS_X86_64_SHA256:="1c65115a425d049590bec7c729c7fd88357fbb090a6fc8c31d834d7b0bc7d6f2"}
 : ${APK_TOOLS_AARCH64_SHA256:="d49a63b8b6780fc1342d3e7e14862aa006c30bafbf74beec8e1dfe99e6f89471"}
+: ${APK_TOOLS_ARMHF_SHA256:="878a000702c1faeb9fdab594dc071b5a1c40647646c96b07aa35dcd43247567a"}
+: ${APK_TOOLS_X86_SHA256:="cb8160be3f57b2e7b071b63cb9acb4f06c1e2521b69db178b63e2130acd5504a"}
 
 
 # Set pipefail if supported.
@@ -322,6 +324,8 @@ esac
 case "$ALPINE_ARCH" in
 	"x86_64") APK_TOOLS_SHA256=$APK_TOOLS_X86_64_SHA256;;
 	"aarch64") APK_TOOLS_SHA256=$APK_TOOLS_AARCH64_SHA256;;
+	"armhf") APK_TOOLS_SHA256=$APK_TOOLS_ARMHF_SHA256;;
+	"x86") APK_TOOLS_SHA256=$APK_TOOLS_X86_SHA256;;
 esac
 
 host_pkgs=''
@@ -457,7 +461,7 @@ if [ "$SCRIPT" ]; then
 			bind_dir="$(pwd)"
 			script_file2="/$script_name"
 		else
-			bind_dir="../$(dirname "$script_file")"
+			bind_dir="."
 			script_file2="./$script_name"
 		fi
 		echo "Mounting $bind_dir to /mnt inside chroot" >&2

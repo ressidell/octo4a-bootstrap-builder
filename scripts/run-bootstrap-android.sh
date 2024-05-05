@@ -1,4 +1,10 @@
 #!/system/bin/sh
+# Minimal proot run script, used as entrypoint in bootstrap
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+	echo "Usage: <user> <command>"
+	exit 1
+fi
 
 if [ ! -d "bootstrap" ]; then
     echo "No bootstrap detected, extracting"
@@ -16,10 +22,17 @@ if [ ! -d "bootstrap" ]; then
     cd ..
 fi
 
-PATH='/sbin:/usr/sbin:/bin:/usr/bin'
-USER='root'
-HOME='/root'
-OP="-0"
+if [ "$1" = "root" ]; then
+	PATH='/sbin:/usr/sbin:/bin:/usr/bin'
+	USER='root'
+	HOME='/root'
+	OP="-0"
+else
+	OP=""
+	USER="$1"
+	PATH='/sbin:/usr/sbin:/bin:/usr/bin'
+	HOME="/home/$USER"
+fi
 
 BASE_DIR="$PWD"
 
@@ -42,4 +55,4 @@ export HOME
 # proot refers to ../libexec, hence PWD is necessary
 cd bin/
 
-./proot -r ../bootstrap -0 --kill-on-exit -b /dev -b /proc -b /system:/system -b /vendor:/vendor -b /apex:/apex --link2symlink -w $HOME
+./proot -r ../bootstrap $OP -b /dev -b /proc -b /storage -b /system -b /vendor -b /apex -b ${PWD}/fake_proc_stat:/proc/stat $EXTRA_BIND --link2symlink -w $HOME "$@"

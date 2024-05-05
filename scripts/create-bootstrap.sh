@@ -27,6 +27,10 @@ mkdir build/
 echo "Downloading OctoPrint release $OCTOPRINT_VERSION"
 curl -o build/octoprint.tar.gz -L https://github.com/OctoPrint/OctoPrint/releases/download/$OCTOPRINT_VERSION/OctoPrint-$OCTOPRINT_VERSION.tar.gz
 
+# Unpack octoprint, move to a dir easily accessible from the chroot
+tar -xzf build/octoprint.tar.gz -C build/
+mv build/OctoPrint-$OCTOPRINT_VERSION build/octoprint
+
 # Build talloc, proot
 . ./scripts/build-talloc.sh
 . ./scripts/build-proot.sh
@@ -36,11 +40,14 @@ cd external/minitar
 sh build.sh
 cd ../../
 
-# Build alpine bootstrap
-. ./scripts/build-octo4a-bootstrap.sh
-
 echo "Building ioctl hook"
 . ./scripts/build-ioctl-hook.sh
+
+# Copy into non-arch specfic file, for access from chroot bind
+cp build/ioctlHook-$ARCH.so build/ioctl-hook.so
+
+# Build alpine bootstrap
+. ./scripts/build-octo4a-bootstrap.sh
 
 echo "Preparing full bootstrap archive"
 mkdir build/bootstrap-dir
@@ -53,9 +60,6 @@ mv build/rootfs.tar.xz build/bootstrap-dir/
 
 # include minitar
 cp external/minitar/build/libs/$ARCH_NDK/minitar build/bootstrap-dir/bin
-
-# include ioctl hook
-cp build/ioctlHook-$ARCH.so build/bootstrap-dir/ioctl-hook.so
 
 # include entrypoint script
 cp scripts/run-bootstrap-android.sh build/bootstrap-dir/entrypoint.sh

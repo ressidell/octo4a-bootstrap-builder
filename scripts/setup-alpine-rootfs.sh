@@ -1,4 +1,5 @@
 #!/bin/sh
+# Ran as part of alpine-make-rootfs, chrooted as the bootstrap thats being built
 set -eu
 
 export PATH='/sbin:/usr/sbin:/bin:/usr/bin'
@@ -36,8 +37,13 @@ adduser -D -g "octoprint" octoprint
 
 export HOME='/home/octoprint'
 
-# chown -R octoprint /mnt/octoprint-release
+mkdir -p /home/octoprint/.octoprint/plugins
+cp /mnt/src/comm-fix.py /home/octoprint/.octoprint/plugins
+cp /mnt/build/ioctl-hook.so /home/octoprint/ioctl-hook.so
 
-# # switch to octoprint user
-# su -s /bin/bash -c "python3 -m venv ~/octoprint-venv" octoprint
-# su -s /bin/bash -c ". ~/octoprint-venv/bin/activate && cd /mnt/octoprint-release && ls -l && pip3 install ." octoprint
+chown -R octoprint /mnt/build/octoprint
+chown -R octoprint /home/octoprint/.octoprint
+
+# switch to octoprint user
+su -s /bin/bash -c "python3 -m venv ~/octoprint-venv" octoprint
+su -s /bin/bash -c ". ~/octoprint-venv/bin/activate && cd /mnt/build/octoprint && ls -l && pip3 install ." octoprint

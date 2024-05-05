@@ -457,7 +457,7 @@ if [ "$SCRIPT" ]; then
 			bind_dir="$(pwd)"
 			script_file2="/$script_name"
 		else
-			bind_dir="$(dirname "$script_file")"
+			bind_dir="../$(dirname "$script_file")"
 			script_file2="./$script_name"
 		fi
 		echo "Mounting $bind_dir to /mnt inside chroot" >&2

@@ -46,13 +46,13 @@ echo "Preparing full bootstrap archive"
 mkdir build/bootstrap-dir
 
 # include proot
-cp -r build/root-$ARCH/root build/bootstrap-dir/root
+cp -r build/root-$ARCH/root/* build/bootstrap-dir/
 
 # include bootstrap archive
 mv build/rootfs.tar.xz build/bootstrap-dir/
 
 # include minitar
-cp external/minitar/build/libs/$ARCH_NDK/minitar build/bootstrap-dir/root/bin
+cp external/minitar/build/libs/$ARCH_NDK/minitar build/bootstrap-dir/bin
 
 # include ioctl hook
 cp build/ioctlHook-$ARCH.so build/bootstrap-dir/ioctl-hook.so

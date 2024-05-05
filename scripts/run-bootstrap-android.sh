@@ -1,4 +1,21 @@
 #!/system/bin/sh
+
+if [ ! -d "bootstrap" ]; then
+    echo "No bootstrap detected, extracting"
+    # set permissions
+    chmod -R 700 .
+    chmod -R +rx .
+
+    # make the bootstrap directory
+    mkdir bootstrap
+    cd bootstrap
+
+    # extract and delete rootfs
+    cat ../rootfs.tar.xz | ../bin/minitar
+    rm -rf ../rootfs.tar.xz
+    cd ..
+fi
+
 PATH='/sbin:/usr/sbin:/bin:/usr/bin'
 USER='root'
 HOME='/root'

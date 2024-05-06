@@ -19,6 +19,7 @@ if [ ! -d "bootstrap" ]; then
     # extract and delete rootfs
     cat ../rootfs.tar.xz | ../bin/minitar
     rm -rf ../rootfs.tar.xz
+
     cd ..
 fi
 
@@ -55,4 +56,6 @@ export HOME
 # proot refers to ../libexec, hence PWD is necessary
 cd bin/
 
-./proot -r ../bootstrap $OP -b /dev -b /proc -b /storage -b /system -b /vendor -b /apex -b ${PWD}/fake_proc_stat:/proc/stat $EXTRA_BIND --link2symlink -w $HOME "$@"
+shift
+
+./proot -r ../bootstrap/ $OP -b /dev -b /proc -b /storage -b /system -b /vendor -b /apex -b ${PWD}/../fake_proc_stat:/proc/stat $EXTRA_BIND --link2symlink -w $HOME "$@"

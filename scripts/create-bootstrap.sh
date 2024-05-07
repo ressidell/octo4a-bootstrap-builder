@@ -61,9 +61,6 @@ mv build/rootfs.tar.xz build/bootstrap-dir/
 # include minitar
 cp external/minitar/build/libs/$ARCH_NDK/minitar build/bootstrap-dir/bin
 
-# include comm-fix
-cp src/comm-fix.py build/bootstrap-dir/comm-fix.py
-
 # include entrypoint script
 cp scripts/run-bootstrap-android.sh build/bootstrap-dir/entrypoint.sh
 

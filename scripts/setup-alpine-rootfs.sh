@@ -38,7 +38,6 @@ adduser -D -g "octoprint" octoprint
 export HOME='/home/octoprint'
 
 mkdir -p /home/octoprint/.octoprint/plugins
-cp /mnt/src/comm-fix.py /home/octoprint/.octoprint/plugins
 cp /mnt/build/ioctl-hook.so /home/octoprint/ioctl-hook.so
 
 chown -R octoprint /mnt/build/octoprint

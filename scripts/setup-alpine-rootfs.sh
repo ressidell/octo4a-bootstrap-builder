@@ -5,29 +5,6 @@ set -eu
 export PATH='/sbin:/usr/sbin:/bin:/usr/bin'
 export SHELL='/bin/sh'
 
-mkdir -p /root/extensions/ttyd
-cat <<EOF >/root/extensions/ttyd/manifest.json
-{
-        "title": "Remote web terminal (ttyd)",
-        "description": "Uses port 5002; User root / ssh password"
-}
-EOF
-
-echo "octoprint" >/root/.octoCredentials
-cat <<EOF >/root/extensions/ttyd/start.sh
-#!/bin/sh
-ttyd -p 5002 --credential root:\$(cat /root/.octoCredentials) bash
-EOF
-
-cat <<EOF >/root/extensions/ttyd/kill.sh
-#!/bin/sh
-pkill ttyd
-EOF
-chmod +x /root/extensions/ttyd/start.sh
-chmod +x /root/extensions/ttyd/kill.sh
-chmod 777 /root/extensions/ttyd/start.sh
-chmod 777 /root/extensions/ttyd/kill.sh
-
 # include resolv.conf
 echo "nameserver 8.8.8.8 \n \
 nameserver 8.8.4.4" >/etc/resolv.conf
@@ -38,6 +15,28 @@ adduser -D -g "octoprint" octoprint
 export HOME='/home/octoprint'
 
 mkdir -p /home/octoprint/.octoprint/plugins
+mkdir -p /home/octoprint/extensions/ttyd
+
+cat <<EOF >/home/octoprint/ttyd/manifest.json
+{
+        "title": "Remote web terminal (ttyd)",
+        "description": "Uses port 5002; User root / ssh password"
+}
+EOF
+
+echo "octoprint" >/root/.octoCredentials
+cat <<EOF >/home/octoprint/ttyd/start.sh
+#!/bin/sh
+ttyd -p 5002 --credential root:\$(cat /root/.octoCredentials) bash
+EOF
+
+cat <<EOF >/home/octoprint/ttyd/kill.sh
+#!/bin/sh
+pkill ttyd
+EOF
+chmod +x /home/octoprint/ttyd/*.sh
+chmod 755 /home/octoprint/ttyd/*.sh
+
 cp /mnt/src/comm-fix.py /home/octoprint/
 cp /mnt/build/ioctl-hook.so /home/octoprint/ioctl-hook.so
 

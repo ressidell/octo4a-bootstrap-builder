@@ -17,7 +17,7 @@ export HOME='/home/octoprint'
 mkdir -p /home/octoprint/.octoprint/plugins
 mkdir -p /home/octoprint/extensions/ttyd
 
-cat <<EOF >/home/octoprint/ttyd/manifest.json
+cat <<EOF >/home/octoprint/extensions/ttyd/manifest.json
 {
         "title": "Remote web terminal (ttyd)",
         "description": "Uses port 5002; User root / ssh password"
@@ -30,12 +30,12 @@ cat <<EOF >/home/octoprint/ttyd/start.sh
 ttyd -p 5002 --credential root:\$(cat /root/.octoCredentials) bash
 EOF
 
-cat <<EOF >/home/octoprint/ttyd/kill.sh
+cat <<EOF >/home/octoprint/extensions/ttyd/kill.sh
 #!/bin/sh
 pkill ttyd
 EOF
-chmod +x /home/octoprint/ttyd/*.sh
-chmod 755 /home/octoprint/ttyd/*.sh
+chmod +x /home/octoprint/extensions/ttyd/*.sh
+chmod 755 /home/octoprint/extensions/ttyd/*.sh
 
 cp /mnt/src/comm-fix.py /home/octoprint/
 cp /mnt/build/ioctl-hook.so /home/octoprint/ioctl-hook.so

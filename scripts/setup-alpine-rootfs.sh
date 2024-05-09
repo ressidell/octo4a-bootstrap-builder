@@ -25,7 +25,7 @@ cat <<EOF >/home/octoprint/extensions/ttyd/manifest.json
 EOF
 
 echo "octoprint" >/root/.octoCredentials
-cat <<EOF >/home/octoprint/ttyd/start.sh
+cat <<EOF >/home/octoprint/extensions/ttyd/start.sh
 #!/bin/sh
 ttyd -p 5002 --credential root:\$(cat /root/.octoCredentials) bash
 EOF

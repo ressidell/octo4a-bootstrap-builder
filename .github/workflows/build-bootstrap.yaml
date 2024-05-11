@@ -47,6 +47,7 @@ jobs:
           name: bootstrap-${{ env.SHORT_SHA }}-${{ matrix.arch }}
           path: build/bootstrap-${{ github.event.inputs.octoprint-version }}-${{ matrix.arch }}.zip
   release:
+    permissions: write-all
     if: ${{ github.event.inputs.build-type != 'artifact-only' }}
     needs: [build-bootstrap]
     runs-on: ubuntu-latest

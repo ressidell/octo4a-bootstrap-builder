@@ -65,6 +65,7 @@ jobs:
         with:
           prerelease: ${{ github.event.inputs.build-type == 'pre-release' }}
           body: Octo4a bootstrap ${{ env.SHORT_SHA }} bundled with OctoPrint {{ github.event.inputs.octoprint-version }}
+          tag_name: v${{ env.SHORT_SHA }}-${{ github.event.inputs.octoprint-version }}
           files: |
             bootstrap-${{ env.SHORT_SHA }}-i686/bootstrap-${{ github.event.inputs.octoprint-version }}-i686.zip
             bootstrap-${{ env.SHORT_SHA }}-x86_64/bootstrap-${{ github.event.inputs.octoprint-version }}-x86_64.zip

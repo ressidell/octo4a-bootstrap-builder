@@ -49,6 +49,7 @@ jobs:
   release:
     if: ${{ github.event.inputs.build-type != 'artifact-only' }}
     needs: [build-bootstrap]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
       - name: Display structure of downloaded files

@@ -2,7 +2,7 @@
 
 This repository contains a set of different scripts and GitHub Action workflow files, that are used to build a custom Alpine Linux rootfs, used by the [octo4a](https://github.com/feelfreelinux/octo4a) app.
 
-Asides from 
+It also builds proot, and includes it alongside the bootstrap archive. Proot is used to chroot into the rootfs on the Android device.
 
 ## Scripts
 - `scripts/alpine-make-rootfs.sh` - modified version of [alpine-make-rootfs](https://github.com/alpinelinux/alpine-make-rootfs), used to build a custom version of the alpine-linux bootstrap, with Octoprint and necessary dependencies contained inside. The original script was altered to support multiple architectures.

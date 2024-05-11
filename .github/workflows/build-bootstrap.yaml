@@ -51,14 +51,15 @@ jobs:
     needs: [build-bootstrap]
     runs-on: ubuntu-latest
     steps:
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@v6.2
-        with:
-          custom_tag: ${{ env.SHORT_SHA }}-{{ github.event.inputs.octoprint-version }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download the built bootstrap artifacts
       - uses: actions/download-artifact@v4
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      - name: Create a tag for the release
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          custom_tag: ${{ env.SHORT_SHA }}-${{ github.event.inputs.octoprint-version }}
+          github_token: ${{ secrets.GITHUB_TOKEN }} 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:

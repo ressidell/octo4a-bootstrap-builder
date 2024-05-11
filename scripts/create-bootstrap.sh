@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 # Generates a full octo4a bootstrap + startup scripts for a given architecture
 
-if [ -z "$1" ] || [ -z "$2" ]; then
-	echo "Usage: <arch> <octoprint version>"
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+	echo "Usage: <arch> <octoprint version> <bootstrap shortsha>"
 	exit 1
 fi
 
@@ -18,6 +18,7 @@ fi
 export PATH="$PATH:$NDK_PATH"
 export ARCH=$1
 export OCTOPRINT_VERSION=$2
+export BOOTSTRAP_SHA=$3
 export BUILD_DIR="$PWD/build"
 
 rm -rf build/
@@ -66,6 +67,9 @@ cp scripts/run-bootstrap-android.sh build/bootstrap-dir/entrypoint.sh
 
 # misc
 cp src/fake_proc_stat build/bootstrap-dir/
+
+# short ver to the bootstrpa
+echo "$OCTOPRINT_VERSION-$BOOTSTRAP_SHA" >> build/bootstrap-dir/build-version.txt
 
 # Compress the complete bootstrap
 cd build/bootstrap-dir && zip -r ../bootstrap-$OCTOPRINT_VERSION-$ARCH.zip *

@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arch: [x86_64, i686]
+        arch: [x86_64, i686, aarch64, armv7a]
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
@@ -64,8 +64,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           prerelease: ${{ github.event.inputs.build-type == 'pre-release' }}
-          body: Octo4a bootstrap ${{ env.SHORT_SHA }} bundled with OctoPrint {{ github.event.inputs.octoprint-version }}
+          body: Octo4a bootstrap ${{ env.SHORT_SHA }} bundled with OctoPrint ${{ github.event.inputs.octoprint-version }}
           tag_name: v${{ env.SHORT_SHA }}-${{ github.event.inputs.octoprint-version }}
           files: |
             bootstrap-${{ env.SHORT_SHA }}-i686/bootstrap-${{ github.event.inputs.octoprint-version }}-i686.zip
             bootstrap-${{ env.SHORT_SHA }}-x86_64/bootstrap-${{ github.event.inputs.octoprint-version }}-x86_64.zip
+            bootstrap-${{ env.SHORT_SHA }}-aarch64/bootstrap-${{ github.event.inputs.octoprint-version }}-aarch64.zip
+            bootstrap-${{ env.SHORT_SHA }}-armv7a/bootstrap-${{ github.event.inputs.octoprint-version }}-armv7a.zip

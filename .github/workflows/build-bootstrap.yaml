@@ -51,6 +51,11 @@ jobs:
     needs: [build-bootstrap]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - run: git tag ${{ env.SHORT_SHA }}-{{ github.event.inputs.octoprint-version }}
       - uses: actions/download-artifact@v4
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV

@@ -56,8 +56,8 @@ jobs:
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - name: Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
         with:
+          prerelease: ${{ github.event.inputs.build-type == 'pre-release' }}
           body: Octo4a bootstrap ${{ env.SHORT_SHA }} bundled with OctoPrint {{ github.event.inputs.octoprint-version }}
           files: |
             bootstrap-${{ env.SHORT_SHA }}-i686/bootstrap-${{ github.event.inputs.octoprint-version }}-i686.zip

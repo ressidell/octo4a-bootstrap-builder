@@ -4,7 +4,7 @@
 set -eu
 
 # alpine packages required to install octoprint
-readonly O4A_PKGS='alpine-keys apk-tools gcc python3 py3-pip libffi-dev python3-dev musl-dev curl git linux-headers openssh-server p7zip bash unzip ffmpeg ttyd'
+readonly O4A_PKGS='alpine-keys apk-tools gcc python3 py3-pip libffi-dev python3-dev musl-dev curl git linux-headers dropbear p7zip bash unzip ffmpeg ttyd'
 readonly ALPINE_BRANCH='3.19'
 
 case "$ARCH" in

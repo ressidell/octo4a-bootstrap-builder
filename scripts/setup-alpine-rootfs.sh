@@ -27,7 +27,7 @@ EOF
 echo "octoprint" >/root/.octoCredentials
 cat <<EOF >/home/octoprint/extensions/ttyd/start.sh
 #!/bin/sh
-ttyd -p 5002 --credential root:\$(cat /root/.octoCredentials) bash
+ttyd -p 5002 -W --credential root:\$(cat /root/.octoCredentials) bash
 EOF
 
 cat <<EOF >/home/octoprint/extensions/ttyd/kill.sh

@@ -30,7 +30,17 @@ curl -o build/octoprint.tar.gz -L https://github.com/OctoPrint/OctoPrint/release
 
 # Unpack octoprint, move to a dir easily accessible from the chroot
 tar -xzf build/octoprint.tar.gz -C build/
-mv build/OctoPrint-$OCTOPRINT_VERSION build/octoprint
+
+OCTOPRINT_LOWERCASE_DIR="build/octoprint-$OCTOPRINT_VERSION"
+OCTOPRINT_UPPERCASE_DIR="build/OctoPrint-$OCTOPRINT_VERSION"
+
+if [ -f "$OCTOPRINT_LOWERCASE_DIR" ]; then
+    mv $OCTOPRINT_LOWERCASE_DIR build/octoprint
+fi
+
+if [ -f "$OCTOPRINT_UPPERCASE_DIR" ]; then
+    mv $OCTOPRINT_UPPERCASE_DIR build/octoprint
+fi
 
 # Build talloc, proot
 . ./scripts/build-talloc.sh

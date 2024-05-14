@@ -34,7 +34,7 @@ jobs:
         uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
-          ndk-version: r23
+          ndk-version: r26d
           add-to-path: true
       - name: Build bootstrap
         run: |

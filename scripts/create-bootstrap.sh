@@ -2,8 +2,8 @@
 # Generates a full octo4a bootstrap + startup scripts for a given architecture
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
-    echo "Usage: <arch> <octoprint version> <bootstrap shortsha>"
-    exit 1
+	echo "Usage: <arch> <octoprint version> <bootstrap shortsha>"
+	exit 1
 fi
 
 set -e
@@ -44,18 +44,9 @@ if [ -d "$OCTOPRINT_UPPERCASE_DIR" ]; then
     mv $OCTOPRINT_UPPERCASE_DIR build/octoprint
 fi
 
-BUILD_PRE5=false
-
 # Build talloc, proot
 . ./scripts/build-talloc.sh
 . ./scripts/build-proot.sh
-
-if [ "$ARCH" == 'armv7a' ] || [ "$ARCH" == 'i686' ]; then
-    # for API level <21, we need to get separate proot and talloc binaries
-    BUILD_PRE5=true
-    . ./scripts/build-talloc.sh
-    . ./scripts/build-proot.sh
-fi
 
 echo "Building minitar binaries"
 cd external/minitar
@@ -90,7 +81,7 @@ cp scripts/run-bootstrap-android.sh build/bootstrap-dir/entrypoint.sh
 cp src/fake_proc_stat build/bootstrap-dir/
 
 # short ver to the bootstrpa
-echo "$OCTOPRINT_VERSION-$BOOTSTRAP_SHA" >>build/bootstrap-dir/build-version.txt
+echo "$OCTOPRINT_VERSION-$BOOTSTRAP_SHA" >> build/bootstrap-dir/build-version.txt
 
 # Compress the complete bootstrap
 cd build/bootstrap-dir && zip -r ../bootstrap-$OCTOPRINT_VERSION-$ARCH.zip *

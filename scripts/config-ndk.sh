@@ -36,16 +36,11 @@ config_ndk() {
         ;;
     esac
 
-    if $BUILD_PRE5; then
-        export INSTALL_ROOT="$BUILD_DIR/root-$1-pre5/root"
-        export STATIC_ROOT="$BUILD_DIR/static-$1-pre5/root"
-        export API=16
-    else
-        export INSTALL_ROOT="$BUILD_DIR/root-$1/root"
-        export STATIC_ROOT="$BUILD_DIR/static-$1/root"
-        export API=21
-    fi
+    export INSTALL_ROOT="$BUILD_DIR/root-$1/root"
+    export STATIC_ROOT="$BUILD_DIR/static-$1/root"
 
+    # Set this to your minSdkVersion.
+    export API=21
     # Configure and build.
     export AR="$TOOLCHAIN/bin/llvm-ar"
     export CC="$TOOLCHAIN/bin/$TARGET$API-clang"

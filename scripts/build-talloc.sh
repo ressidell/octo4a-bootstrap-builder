@@ -12,6 +12,15 @@ config_ndk $ARCH
 
 echo "Building static talloc for $ARCH"
 
+if [ $BUILD_PRE5 ]
+then
+FILE_OFFSET_BITS='NO'
+export CFLAGS="$CFLAGS -D__ANDROID_API__=14"
+else
+FILE_OFFSET_BITS='OK'
+export CFLAGS="$DEF_CFLAGS"
+fi
+
 cat <<EOF >cross-answers.txt
 Checking uname sysname type: "Linux"
 Checking uname machine type: "dontcare"
@@ -20,7 +29,7 @@ Checking uname version type: "dontcare"
 Checking simple C program: OK
 building library support: OK
 Checking for large file support: OK
-Checking for -D_FILE_OFFSET_BITS=64: OK
+Checking for -D_FILE_OFFSET_BITS=64: $FILE_OFFSET_BITS
 Checking for WORDS_BIGENDIAN: OK
 Checking for C99 vsnprintf: OK
 Checking for HAVE_SECURE_MKSTEMP: OK

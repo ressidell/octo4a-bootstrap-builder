@@ -12,6 +12,8 @@ config_ndk $ARCH
 
 echo "Building static talloc for $ARCH"
 
+DEF_CFLAGS="$CFLAGS"
+
 if [ $BUILD_PRE5 ]
 then
 FILE_OFFSET_BITS='NO'

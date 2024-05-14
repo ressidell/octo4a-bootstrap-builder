@@ -14,7 +14,7 @@ echo "Building static talloc for $ARCH"
 
 DEF_CFLAGS="$CFLAGS"
 
-if [ $BUILD_PRE5 ]
+if $BUILD_PRE5
 then
 FILE_OFFSET_BITS='NO'
 export CFLAGS="$CFLAGS -D__ANDROID_API__=14"

@@ -12,8 +12,8 @@ if [ ! -d "bootstrap" ]; then
     mkdir bootstrap
 
     # set permissions
-    chmod -R 777 .
-    chmod -R +rx .
+    chmod -R 777 ../
+    chmod -R +rx ../
 
     cd bootstrap
 

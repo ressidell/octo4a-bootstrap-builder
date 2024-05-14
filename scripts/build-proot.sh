@@ -16,7 +16,7 @@ export CFLAGS="-I$STATIC_ROOT/include -DARG_MAX=131072"
 export LDFLAGS="-L$STATIC_ROOT/lib"
 export PROOT_UNBUNDLE_LOADER='../libexec/proot'
 
-if [ $BUILD_PRE5 ]
+if $BUILD_PRE5
 then export ANDROID_PRE5=1
 else unset ANDROID_PRE5
 fi

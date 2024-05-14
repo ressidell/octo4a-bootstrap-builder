@@ -36,7 +36,7 @@ config_ndk() {
         ;;
     esac
 
-    if [ $BUILD_PRE5 ]; then
+    if $BUILD_PRE5; then
         export INSTALL_ROOT="$BUILD_DIR/root-$1-pre5/root"
         export STATIC_ROOT="$BUILD_DIR/static-$1-pre5/root"
         export API=16

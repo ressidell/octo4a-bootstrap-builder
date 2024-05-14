@@ -8,12 +8,13 @@ fi
 
 if [ ! -d "bootstrap" ]; then
     echo "No bootstrap detected, extracting"
-    # set permissions
-    chmod -R 700 .
-    chmod -R +rx .
-
     # make the bootstrap directory
     mkdir bootstrap
+
+    # set permissions
+    chmod -R 777 .
+    chmod -R +rx .
+
     cd bootstrap
 
     # extract and delete rootfs

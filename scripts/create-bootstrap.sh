@@ -34,11 +34,13 @@ tar -xzf build/octoprint.tar.gz -C build/
 OCTOPRINT_LOWERCASE_DIR="build/octoprint-$OCTOPRINT_VERSION"
 OCTOPRINT_UPPERCASE_DIR="build/OctoPrint-$OCTOPRINT_VERSION"
 
-if [ -f "$OCTOPRINT_LOWERCASE_DIR" ]; then
+if [ -d "$OCTOPRINT_LOWERCASE_DIR" ]; then
+    echo "Lowercase octoprint dir detected, moving"
     mv $OCTOPRINT_LOWERCASE_DIR build/octoprint
 fi
 
-if [ -f "$OCTOPRINT_UPPERCASE_DIR" ]; then
+if [ -d "$OCTOPRINT_UPPERCASE_DIR" ]; then
+    echo "Uppercase octoprint dir detected, moving"
     mv $OCTOPRINT_UPPERCASE_DIR build/octoprint
 fi
 

@@ -57,7 +57,6 @@ int ioctl(int fd, int request, ...)
         writeEventToPipe("customBaud", 10);
         return 0;
     }
-    //DPRINTF ("HOOK: ioctl (fd=%d, request=%p, argp=%p [%02X])\n", fd, request, argp);
     return funcIoctl(fd, request, argp);
 }
 

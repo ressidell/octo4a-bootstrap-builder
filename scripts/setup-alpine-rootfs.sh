@@ -38,10 +38,13 @@ chmod +x /home/octoprint/extensions/ttyd/*.sh
 chmod 755 /home/octoprint/extensions/ttyd/*.sh
 
 cp /mnt/src/comm-fix.py /home/octoprint/
-cp /mnt/build/ioctl-hook.so /home/octoprint/ioctl-hook.so
 
 chown -R octoprint /mnt/build/octoprint
 chown -R octoprint /home/octoprint/.octoprint
+
+# Build ioctl-hook
+gcc -fPIC -c -o /home/octoprint/ioctlHook.o /mnt/build/ioctlHook.c
+gcc -shared -o /home/octoprint/ioctl-hook.so /home/octoprint/ioctlHook.o -ldl
 
 # switch to octoprint user
 su -s /bin/bash -c "python3 -m venv ~/octoprint-venv" octoprint

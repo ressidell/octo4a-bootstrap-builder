@@ -53,11 +53,8 @@ cd external/minitar
 sh build.sh
 cd ../../
 
-echo "Building ioctl hook"
-. ./scripts/build-ioctl-hook.sh
-
-# Copy into non-arch specfic file, for access from chroot bind
-cp build/ioctlHook-$ARCH.so build/ioctl-hook.so
+# Copy ioctl hook source into build/, so its available from the bootstrap chroot
+cp src/ioctlHook.c build/ioctlHook.c
 
 # Build alpine bootstrap
 . ./scripts/build-octo4a-bootstrap.sh

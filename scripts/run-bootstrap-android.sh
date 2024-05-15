@@ -6,10 +6,18 @@ if [ -z "$1" ] || [ -z "$2" ]; then
 	exit 1
 fi
 
+BASE_DIR="$PWD"
+
+export PROOT_TMP_DIR="$BASE_DIR/tmp"
+export PROOT_L2S_DIR="$BASE_DIR/bootstrap/.proot.meta"
+
 if [ ! -d "bootstrap" ]; then
     echo "No bootstrap detected, extracting"
-    # make the bootstrap directory
+
+    # make the bootstrap directories
     mkdir bootstrap
+    mkdir -p "$PROOT_TMP_DIR"
+    mkdir -p "$PROOT_L2S_DIR"
 
     # set permissions
     chmod -R 777 ../
@@ -35,14 +43,6 @@ else
 	PATH='/sbin:/usr/sbin:/bin:/usr/bin'
 	HOME="/home/$USER"
 fi
-
-BASE_DIR="$PWD"
-
-export PROOT_TMP_DIR="$BASE_DIR/tmp"
-export PROOT_L2S_DIR="$BASE_DIR/bootstrap/.proot.meta"
-
-mkdir -p "$PROOT_TMP_DIR"
-mkdir -p "$PROOT_L2S_DIR"
 
 # unset envs
 unset TMPDIR

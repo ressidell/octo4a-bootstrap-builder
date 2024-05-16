@@ -44,9 +44,18 @@ if [ -d "$OCTOPRINT_UPPERCASE_DIR" ]; then
     mv $OCTOPRINT_UPPERCASE_DIR build/octoprint
 fi
 
+BUILD_PRE5=false
+
 # Build talloc, proot
 . ./scripts/build-talloc.sh
 . ./scripts/build-proot.sh
+
+if [ "$ARCH" == 'armv7a' ] || [ "$ARCH" == 'i686' ]; then
+    # for API level <21, we need to get separate proot and talloc binaries
+    BUILD_PRE5=true
+    . ./scripts/build-talloc.sh
+    . ./scripts/build-proot.sh
+fi
 
 echo "Building minitar binaries"
 cd external/minitar

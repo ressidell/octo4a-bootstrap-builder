@@ -2,8 +2,8 @@
 # Generates a full octo4a bootstrap + startup scripts for a given architecture
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
-	echo "Usage: <arch> <octoprint version> <bootstrap shortsha>"
-	exit 1
+    echo "Usage: <arch> <octoprint version> <bootstrap shortsha>"
+    exit 1
 fi
 
 set -e
@@ -74,6 +74,13 @@ mkdir build/bootstrap-dir
 # include proot
 cp -r build/root-$ARCH/root/* build/bootstrap-dir/
 
+if $BUILD_PRE5; then
+    # include pre5 proot and minitar binaries
+    cp -r build/root-$ARCH-pre5/root/bin build/bootstrap-dir/bin-pre5
+    cp -r build/root-$ARCH-pre5/root/libexec build/bootstrap-dir/libexec-pre5
+    cp external/minitar/build/libs/$ARCH_NDK/minitar build/bootstrap-dir/bin-pre5
+fi
+
 # include bootstrap archive
 mv build/rootfs.tar.xz build/bootstrap-dir/
 
@@ -87,7 +94,7 @@ cp scripts/run-bootstrap-android.sh build/bootstrap-dir/entrypoint.sh
 cp src/fake_proc_stat build/bootstrap-dir/
 
 # short ver to the bootstrpa
-echo "$OCTOPRINT_VERSION-$BOOTSTRAP_SHA" >> build/bootstrap-dir/build-version.txt
+echo "$OCTOPRINT_VERSION-$BOOTSTRAP_SHA" >>build/bootstrap-dir/build-version.txt
 
 # Compress the complete bootstrap
 cd build/bootstrap-dir && zip -r ../bootstrap-$OCTOPRINT_VERSION-$ARCH.zip *

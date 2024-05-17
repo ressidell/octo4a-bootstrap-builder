@@ -59,4 +59,4 @@ cd bin/
 
 shift
 
-./proot -r ../bootstrap/ $OP -b /dev -b /proc -b /storage -b /system -b /vendor -b /apex -b ${PWD}/../fake_proc_stat:/proc/stat $EXTRA_BIND --link2symlink -w $HOME "$@"
+./proot -r ../bootstrap/ $OP -b /dev -b /proc -b /storage -b /system -b /vendor -b /apex -b ${PWD}/../fake_proc_stat:/proc/stat $EXTRA_BIND -L --link2symlink -w $HOME "$@"

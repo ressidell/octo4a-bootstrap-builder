@@ -20,7 +20,7 @@ if [ ! -d "bootstrap" ]; then
     mkdir -p "$PROOT_L2S_DIR"
 
     # set permissions
-    chmod -R 777 ../
+    chmod -R 700 ../
     chmod -R +rx ../
 
     cd bootstrap

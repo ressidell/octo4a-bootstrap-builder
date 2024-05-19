@@ -19,9 +19,12 @@ if [ ! -d "bootstrap" ]; then
     mkdir -p "$PROOT_TMP_DIR"
     mkdir -p "$PROOT_L2S_DIR"
 
-    # set permissions
-    chmod -R 700 ../
-    chmod -R +rx ../
+    # set directory access permission
+    chmod -R 744 .
+
+    # set executable permissions
+    chmod 777 bin/*
+    chmod 777 libexec/proot/*
 
     cd bootstrap
 

@@ -52,6 +52,11 @@ int ioctl(int fd, int request, ...)
         return 0;
     }
 
+    if (request == TIOCEXCL || request == TIOCNXCL) {
+        // Exclusive access to serial port, ignore
+        return 0;
+    }
+
     if (request == 0x802c542a || request == 0x402C542B)
     {
         writeEventToPipe("customBaud", 10);

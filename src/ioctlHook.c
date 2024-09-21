@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
 
 int g_obvio=0;
 #define DPRINTF(format, args...)	if (!g_obvio) { g_obvio=1; fprintf(stderr, format, ## args); g_obvio=0; }
@@ -20,7 +21,7 @@ int g_obvio=0;
 
 #define REAL_LIBC RTLD_NEXT
 #define request_t int
-#define TIOCMBIS 0x5416
+// #define TIOCMBIS 0x5416
 
 static char fifoPath[] = "/home/octoprint/eventPipe";
 static char eventJsonStart[] = "{\"eventType\": \"";
